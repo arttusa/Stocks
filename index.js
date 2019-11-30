@@ -115,6 +115,7 @@ const getAllData = async (list) => {
     }
     refreshedStocklist.push(stockToAdd);
     console.log(refreshedStocklist);
+    await sleep(5000);
   }
   // Lopuksi päivitetään db.json -tiedosto tuoreella datalla
   jsonfile.writeFile(database, refreshedStocklist)
@@ -131,7 +132,7 @@ const getAllData = async (list) => {
 cron.schedule('* 5 8 * * *', function(){
   getAllData(stockList)
 });  
-
+getAllData(stockList)
 
 
 /** Luodaan jokaiselle stockList taulukon yksilölle oma API -sivu perustuen yksilön ID -yksikköön
