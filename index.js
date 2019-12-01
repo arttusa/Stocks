@@ -132,7 +132,7 @@ const getAllData = async (list) => {
 cron.schedule('* 5 8 * * *', function(){
   getAllData(stockList)
 });  
-getAllData(stockList)
+
 
 
 /** Luodaan jokaiselle stockList taulukon yksilölle oma API -sivu perustuen yksilön ID -yksikköön
