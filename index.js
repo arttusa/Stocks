@@ -4,8 +4,9 @@ const cors = require('cors')
 const fetch = require("node-fetch")
 const bodyParser = require('body-parser')
 const jsonfile = require('jsonfile')
-var cron = require('node-cron');
-                                   
+const schedule = require('node-schedule')
+
+
 // Tarvittavat tiedostot
 let database = './db.json';
 let db = require('./db.json');
@@ -127,11 +128,12 @@ const getAllData = async (list) => {
 }
 
 /** Haetaan uudet osaketiedot API:sta, kun Helsingin pörssi on avannut eli klo 10.05
- *  Aika on ilmoitettu 08.05, koska sovellus käyttää GMT -aikaa
- */
-cron.schedule('* 5 8 * * *', function(){
+ * 
+ * Ongelma tämän toiminnassa!!!
+ */ 
+schedule.scheduleJob('5 10 * * *', () => {
   getAllData(stockList)
-});  
+})
 
 
 
