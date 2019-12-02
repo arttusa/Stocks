@@ -79,7 +79,8 @@ const sleep = (ms) => {
 
 /** Metodissa haetaan kaikkien listan osakkeiden avauslukemat viimeiseltä kolmelta kuukaudelta ja asetetaan ne loppujen lopuksi db.json
  *  tiedostoon.
- * 
+ *   
+ *   TODO!! Tarkistus, onko yhdenkään valuet jääty noutamatta ja niille tietyille uusi yritys
  *  
  */
 const getAllData = async (list) => {
