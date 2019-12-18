@@ -2,6 +2,6 @@ POST http://localhost:3001/api
 content-type: application/json
 
 {
-    "name": "Nokia",
-    "symbol": "NOKIA.HEL"
+    "name": "Heeros Oyj",
+    "symbol": "HEEROS.HEL"
 }

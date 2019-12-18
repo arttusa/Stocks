@@ -80,7 +80,6 @@ const sleep = (ms) => {
 /** Metodissa haetaan kaikkien listan osakkeiden avauslukemat viimeiseltä kolmelta kuukaudelta ja asetetaan ne loppujen lopuksi db.json
  *  tiedostoon.
  *   
- *   TODO!! Tarkistus, onko yhdenkään valuet jääty noutamatta ja niille tietyille uusi yritys
  *  
  */
 const getAllData = async (list) => {
@@ -117,7 +116,7 @@ const getAllData = async (list) => {
     }
     refreshedStocklist.push(stockToAdd);
     console.log(refreshedStocklist);
-    await sleep(5000);
+    await sleep(1000);
   }
   // Lopuksi päivitetään db.json -tiedosto tuoreella datalla
   jsonfile.writeFile(database, refreshedStocklist)
@@ -128,11 +127,10 @@ const getAllData = async (list) => {
 
 }
 
-/** Haetaan uudet osaketiedot API:sta, kun Helsingin pörssi on avannut eli klo 10.05
+/** Haetaan uudet osaketiedot API:sta, kun Helsingin pörssi on avannut eli klo 08.05 GMT -aikaa eli 10.05 suomen aikaa
  * 
- * Ongelma tämän toiminnassa!!!
  */ 
-schedule.scheduleJob('5 10 * * *', () => {
+schedule.scheduleJob('5 8 * * *', () => {
   getAllData(stockList)
 })
 
@@ -164,12 +162,13 @@ app.get('/api', (req, res) => {
  *  Tällä hetkellä piilotettuna, koska sitä ei käytetä.
  */ 
 
-/*   
+/*
 app.post('/api', (req, res) => {
   const stock = {
     id: stockList.length + 1,
     name: req.body.name,
-    symbol: req.body.symbol
+    symbol: req.body.symbol,
+    values: []
   };        
   // Tarkistetaan duplikaatit ennen lisäämistä
   if (stockList.find(item => item.symbol === stock.symbol) !== undefined) {
