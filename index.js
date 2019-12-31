@@ -127,10 +127,13 @@ const getAllData = async (list) => {
 
 }
 
-/** Haetaan uudet osaketiedot API:sta, kun Helsingin pörssi on avannut eli klo 08.05 GMT -aikaa eli 10.05 suomen aikaa
+/** Haetaan uudet osaketiedot API:sta, kun Helsingin pörssi on avannut eli klo 08.05 GMT -aikaa eli 10.05 suomen aikaa ja klo 17.05 jotta saadaan muutamalle jenkkiosakkeelle päivitetyt tiedot
  * 
  */ 
 schedule.scheduleJob('5 8 * * *', () => {
+  getAllData(stockList)
+})
+schedule.scheduleJob('5 15 * * *', () => {
   getAllData(stockList)
 })
 
